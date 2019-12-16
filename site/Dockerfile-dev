@@ -1,0 +1,20 @@
+FROM php:7-fpm
+
+RUN apt-get update && apt-get install -y libpq-dev libpng-dev libjpeg-dev git zip && docker-php-ext-configure gd --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && docker-php-ext-install pdo pdo_pgsql pgsql gd
+
+RUN curl -sS https://getcomposer.org/installer | \
+    php -- --install-dir=/usr/bin/ --filename=composer
+
+WORKDIR /var/www/html
+
+COPY composer.json ./
+
+RUN composer install
+
+COPY . .
+
+RUN mkdir /var/www/session
+RUN chown -R www-data:www-data /var/www/session
+RUN chmod 777 /var/www/session
+
+EXPOSE 9000

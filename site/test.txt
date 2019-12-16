@@ -1,0 +1,21 @@
+main { 
+     
+     int notaDoTrabalho = 9 ; 
+     int variavel = 2 ; 
+     float varIf = 0 ; 
+     int varFor = 0 ; 
+     float varWhile = 0 ; 
+     if ( variavel >= 2 ) {  
+        notaDoTrabalho = 10 ; 
+     } 
+     while ( variavel >= 2 ) {  
+        varWhile = 1 ; 
+     } 
+     if ( variavel >= 2 || variavel <= 10 ) {  
+        varIf = 1 ; 
+     } 
+     variavel = 2 + 5 ; 
+     for ( variavel = 0 ; variavel <= 10 ; variavel ++ ) { 
+        varFor  = 10 ; 
+     } 
+  }  

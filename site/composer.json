@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "description": "",
+  "config": {
+    "process-timeout": 0
+  },
+  "keywords": [],
+  "license": "ISC",
+  "authors": [
+    {
+      "name": "Valmor Secco",
+      "email": "valmor@unochapeco.edu.br"
+    },
+    {
+      "name": "Diago Picolli",
+      "email": "diiago@unochapeco.edu.br"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Site\\": ""
+    }
+  },
+  "require": {
+      "php": ">=7.0",
+      "symfony/dotenv": "^4.3"
+  }
+}

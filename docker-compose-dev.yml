@@ -1,0 +1,39 @@
+version: "3"
+services:
+  uno-compiladores-nginx:
+    container_name: uno-compiladores-nginx
+    image: nginx:alpine
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./site:/var/www/html
+      - /var/www/session
+      - /var/www/site/vendor
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - uno-compiladores-site
+    networks:
+      - uno-compiladores-network
+
+  uno-compiladores-site:
+    container_name: uno-compiladores-site
+    build:
+      context: ./site
+      dockerfile: Dockerfile-dev
+    expose:
+      - 9000
+    volumes:
+      - ./site:/var/www/html
+      - /var/www/session
+      - /var/www/html/vendor
+      - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+    networks:
+      - uno-compiladores-network
+
+networks:
+  uno-compiladores-network:
+    driver: bridge
