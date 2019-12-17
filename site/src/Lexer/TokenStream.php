@@ -13,11 +13,12 @@ class TokenStream
   /**
    * @var position
    */
-  protected $position = 0;
+  protected $position;
 
   public function __construct($tokens)
   {
     $this->tokens = $tokens;
+    $this->position = 0;
   }
 
   public function getIterator()
@@ -83,5 +84,19 @@ class TokenStream
   public function toArray()
   {
     return $this->tokens;
+  }
+
+  public function toDump()
+  {
+    $arr = [];
+    foreach($this->toArray() as $key => $token) {
+      $arr[] = [
+        "key" => ($key+1),
+        "id" => $token->getType()->getId(),
+        "name" => $token->getType()->getName(),
+        "value" => $token->getValue()
+      ];
+    }
+    return $arr;
   }
 }

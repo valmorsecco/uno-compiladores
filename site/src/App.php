@@ -38,23 +38,29 @@ class App
   {
     $this->config = (new Config())->getValue();
     $this->symbolTable = (new SymbolTable())->create();
-    $this->lexer = new Lexer($this->symbolTable);
   }
 
-  public function run()
+  public function run($file = false)
   {
     try {
-      $test = @file_get_contents(__DIR__ . "/../test.txt");
+      $text = @file_get_contents($file);
 
-      $lr = $this->lexer->run($test);
-      $this->parser = new Parser($lr, true);
+      $this->lexer = new Lexer($this->symbolTable, $text);
+      $tokenStream = $this->lexer->run();
+
+      $this->parser = new Parser($tokenStream, true);
       $this->parser->run();
 
-      $this->semantic = new Semantic($lr);
+      $this->semantic = new Semantic($tokenStream);
       $this->semantic->run();
 
+      return [
+        "text" => $text,
+        "lexer" => $tokenStream->toDump(),
+        "parser" => $this->parser->getLog()
+      ];
     } catch(\Exception $exception) {
-      echo $exception->getMessage();
+      throw new \Exception($exception->getMessage());
     }
   }
 }

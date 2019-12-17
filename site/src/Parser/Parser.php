@@ -4,6 +4,7 @@ namespace Site\Src\Parser;
 use Site\Src\Token\ArithmeticOperator;
 use Site\Src\Token\BlockStartEnd;
 use Site\Src\Token\EspecialCharacters;
+use Site\Src\Token\IncDec;
 use Site\Src\Token\LogicalOperator;
 use Site\Src\Token\Main;
 use Site\Src\Token\Number;
@@ -12,11 +13,10 @@ use Site\Src\Token\ReservedCond;
 use Site\Src\Token\ReservedStartEnd;
 use Site\Src\Token\ReservedType;
 use Site\Src\Token\Variable;
-use Site\Src\Token\IncDec;
 
 /*
 S <- main {A}
-A <- BA | if(ident H opRel GF) {A} A | while(ident H opRel GF){A} A | for(B ident H opRel GF; ident = G) {A} A| &
+A <- BA | if(ident H opRel GF) {A} A | while(ident H opRel GF) {A} A | for(B ident H opRel GF; ident = G) {A} A | &
 B <- tipo ident C | ident C
 C <- = D | ;
 D <- ident E | valor E
@@ -38,21 +38,14 @@ class Parser
    */
   private $logs = [];
 
-  /**
-   * @var verbose
-   */
-  private $verbose;
-
-  public function __construct($tokenStream, $verbose = false)
+  public function __construct($tokenStream)
   {
     $this->tokenStream = $tokenStream;
-    $this->verbose = $verbose;
   }
 
   protected function addSyntaxError($message)
   {
     throw new \Exception($message);
-    //$this->errors[] = $message;
   }
 
   public function getLog()
@@ -67,9 +60,7 @@ class Parser
 
   protected function log($message)
   {
-    if($this->verbose) {
-      $this->logs[] = $message;
-    }
+    $this->logs[] = $message;
   }
 
   private function matchCurrentToken($tokenType)
@@ -93,7 +84,6 @@ class Parser
 
     if(!$this->matchCurrentToken(ReservedStartEnd::class)) {
       $this->addSyntaxError("Expected '{' at line " . $this->getCurrentToken()->getLine());
-      return false;
     }
 
     $this->tokenStream->next();
@@ -101,7 +91,6 @@ class Parser
 
     if(!$this->matchCurrentToken(ReservedStartEnd::class)) {
       $this->addSyntaxError("Expected '}' at line " . $this->getCurrentToken()->getLine());
-      return false;
     }
     return true;
   }
@@ -117,7 +106,6 @@ class Parser
 
     if(!$this->matchCurrentToken(BlockStartEnd::class)) {
       $this->addSyntaxError("Expected '(' at line " . $this->getCurrentToken()->getLine());
-      return false;
     }
 
     $this->tokenStream->next();
@@ -347,7 +335,6 @@ class Parser
     $this->tokenStream->next();
 
     if($this->matchCurrentToken(LogicalOperator::class) || ($this->matchCurrentToken(EspecialCharacters::class) && $this->getCurrentToken()->getValue() == ';') || ($this->matchCurrentToken(BlockStartEnd::class) && $this->getCurrentToken()->getValue() == ')')) {
-      //$this->tokenStream->next();
       return true;
     }
     $this->H();
@@ -357,7 +344,6 @@ class Parser
   {
     $this->log("Entrou no H");
     if($this->matchCurrentToken(RelationalOperator::class)) {
-      // if is not 'H' follow
       return false;
     }
 
@@ -367,7 +353,6 @@ class Parser
 
     $this->tokenStream->next();
     $this->G();
-
     return true;
   }
 }

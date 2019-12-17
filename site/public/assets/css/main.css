@@ -1,0 +1,45 @@
+.main {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #496472;
+  overflow: hidden;
+}
+
+.CodeMirror {
+  min-height: calc(100vh - 75px);
+  max-height: calc(100vh - 75px);
+}
+
+.section-default {
+  padding: 15px;
+  border: 1px solid #ffffff;
+  float: left;
+}
+
+.section-text {
+  width: 50vw;
+  height: 100vh;
+  position: relative;
+}
+.section-text button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.section-lexer,
+.section-parser {
+  width: 50vw;
+  height: 50vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.section-default h3 {
+  color: #ffffff;
+}
+
+.section-default th, tr, td {
+  color: #ffffff;
+}

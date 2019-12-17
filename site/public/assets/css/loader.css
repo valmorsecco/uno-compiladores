@@ -1,0 +1,65 @@
+body:before,
+#root-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: 0;
+	filter: alpha(opacity=0);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	-moz-opacity: 0;
+	-khtml-opacity: 0;
+	-o-opacity: 0;
+	-webkit-opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+  z-index: 9999;
+}
+body:before {
+  content: "";
+  width: 100vw;
+  height: 100vh;
+  background-color: #496472;
+  z-index: 9998;
+}
+
+body:not([data-load="true"]) {
+  overflow: hidden !important;
+}
+body:not([data-load="true"]):before,
+body:not([data-load="true"]) #root-loader {
+  opacity: 1;
+	filter: alpha(opacity=100);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	-o-opacity: 1;
+	-webkit-opacity: 1;
+  visibility: visible;
+}
+
+#root-loader > img,
+#root-loader > .spinner-border {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 9999;
+}
+#root-loader > img {
+  width: 100px;
+  height: 100px;
+}
+#root-loader > .spinner-border {
+  width: 250px !important;
+  height: 250px !important;
+  color: #ffffff !important;
+}

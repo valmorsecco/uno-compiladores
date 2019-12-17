@@ -5,6 +5,7 @@ use Site\Src\Token\ArithmeticOperator;
 use Site\Src\Token\BlockStartEnd;
 use Site\Src\Token\Comment;
 use Site\Src\Token\EspecialCharacters;
+use Site\Src\Token\IncDec;
 use Site\Src\Token\Letter;
 use Site\Src\Token\LogicalOperator;
 use Site\Src\Token\Main;
@@ -14,7 +15,6 @@ use Site\Src\Token\ReservedCond;
 use Site\Src\Token\ReservedStartEnd;
 use Site\Src\Token\ReservedType;
 use Site\Src\Token\Variable;
-use Site\Src\Token\IncDec;
 
 class SymbolTable
 {
