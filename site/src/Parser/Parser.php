@@ -183,7 +183,7 @@ class Parser
 
     $this->tokenStream->next();
 
-    if(!$this->matchCurrentToken(IncDec::class) && ! $this->getCurrentToken()->getValue() == ('++'||'--')) {
+    if(!$this->matchCurrentToken(IncDec::class) && !$this->getCurrentToken()->getValue() == ('++'||'--')) {
       $this->addSyntaxError("Expected a '++ or --' at line " . $this->getCurrentToken()->getLine());
     }
 
