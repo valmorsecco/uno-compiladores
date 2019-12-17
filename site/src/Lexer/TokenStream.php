@@ -1,8 +1,6 @@
 <?php
 namespace Site\Src\Lexer;
 
-use Traversable;
-
 class TokenStream
 {
   /**
