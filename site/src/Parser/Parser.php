@@ -16,7 +16,7 @@ use Site\Src\Token\Variable;
 
 /*
 S <- main {A}
-A <- BA | if(ident H opRel GF) {A} A | while(ident H opRel GF) {A} A | for(B ident H opRel GF; ident = G) {A} A | &
+A <- BA | if(ident H opRel GF) {A} A | while(ident H opRel GF){A} A | for(B ident opRel G ; ident incDec) {A} A| &
 B <- tipo ident C | ident C
 C <- = D | ;
 D <- ident E | valor E
