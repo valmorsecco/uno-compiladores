@@ -1,5 +1,5 @@
 main { 
-     /* Teste de comentário */ 
+/* Teste de comentário */ 
      int notaDoTrabalho = 9 ; 
      /* Teste de comentário */ 
      int variavel = 2 ; 
@@ -20,4 +20,4 @@ main {
      for ( variavel = 0 ; variavel <= 10 ; variavel ++ ) { 
         varFor  = 10 ; 
      } 
-  }  
+ } 

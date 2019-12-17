@@ -2,7 +2,6 @@
 namespace Site\Src\Lexer;
 
 use Site\Src\Token\Comment;
-use Site\Src\SymbolTable\SymbolTableRecognizer;
 use Site\Src\Token\Token;
 
 class Lexer
