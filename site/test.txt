@@ -1,8 +1,10 @@
 main { 
-     
+     /* Teste de comentário */ 
      int notaDoTrabalho = 9 ; 
+     /* Teste de comentário */ 
      int variavel = 2 ; 
      float varIf = 0 ; 
+     /* Teste de comentário */ 
      int varFor = 0 ; 
      float varWhile = 0 ; 
      if ( variavel >= 2 ) {  

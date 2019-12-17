@@ -7,8 +7,6 @@ use Site\Src\Token\Token;
 
 class Lexer
 {
-  const EOF_TOKEN_TYPE = '$eof';
-
   /**
    * @var currentLine
    */
@@ -46,7 +44,7 @@ class Lexer
     return strtr($string, array("\r\n" => "\n", "\r" => "\n"));
   }
 
-  protected static function removeComments($string)
+  protected function removeComments($string)
   {
     return preg_replace((new Comment())->getRegex(), "", $string);
   }

@@ -7,6 +7,6 @@ class Comment extends AbstractTokenType
   {
     $this->id = 11;
     $this->name = "Comente";
-    $this->regex = "/^\/\*.*\*\/$/";
+    $this->regex = "/\/\*.*\*\//";
   }
 }
